@@ -1,0 +1,26 @@
+<nav class="w-1/5 h-screen fixed top-0 left-0 bg-gray-200 px-6 py-10">
+    <img class="block mx-auto" src="/_includes/core/ui/images/logo.png" alt="Boilerplate">
+
+    {% set link_style = 'block pt-1 text-gray-800 hover:text-blue-600' %}
+    <section class="mt-8 text-sm">
+        <p class="font-bold">The Basics</p>
+        <a class="{{ link_style }}" href="/docs/config">Configuration</a>
+        <a class="{{ link_style }} line-through" href="/docs/templates">Templates</a>
+        <a class="{{ link_style }} line-through" href="/docs/assets">Assets</a>
+    </section>
+
+    <section class="mt-8 text-sm">
+        <p class="font-bold">Plugins</p>
+        <a class="{{ link_style }} line-through" href="/docs/plugins">Available Plugins</a>
+        <a class="{{ link_style }} line-through" href="/docs/plugin-guide">Writing a plugin</a>
+        <a class="{{ link_style }} line-through" href="/docs/hooks">Actions &amp; Filters</a>
+    </section>
+
+    <section class="mt-12 text-xs text-gray-600 font-mono">
+        <p>Boilerplate version</p>
+        <strong class="text-green-700 text-lg">{{ site.version }}</strong>
+
+        <p class="mt-2">Boilerplate directory</p>
+        <strong class="block w-full text-blue-700 truncate" title="{{ site.root_dir }}">{{ site.root_dir }}</strong>
+    </section>
+</nav>

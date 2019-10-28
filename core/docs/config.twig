@@ -1,0 +1,64 @@
+{#---
+title: Configuration | Boilerplate Docs
+---#}
+{% extends 'layouts/default.twig' %}
+
+{% block body %}
+
+    <div>
+        {% include 'partials/nav.twig' %}
+
+        <main class="w-4/5 px-40 py-20 text-gray-700" style="margin-left: 20%">
+            <h1 class="text-2xl font-bold text-gray-900">Configuration</h1>
+            <p class="mt-4">Configuration is managed in a YAML file called <code class="text-gray-900">.config.yml</code> located at the root of your project.</p>
+            <p class="mt-4">Outlined below are the default values that appear on a fresh Boilerplate site. Plugins may define their own values so you will need to refer to the docs for those plugins.</p>
+        
+            <div class="mt-12 font-mono text-gray-900">
+                url
+                <span class="rounded bg-red-700 text-red-300 px-2 py-1 text-xs">required</span>
+            </div>
+            <p class="text-sm">The site's full URL, including protocol. <code class="text-gray-900">e.g. https://example.co.uk</code></p>
+
+            <div class="mt-4 font-mono text-gray-900">
+                email
+                <span class="rounded bg-red-700 text-red-300 px-2 py-1 text-xs">required</span>
+            </div>
+            <p class="text-sm">Site e-mail address, required by the Form plugin</p>
+
+            <div class="mt-4 font-mono text-gray-900">
+                environment
+                <span class="rounded bg-red-700 text-red-300 px-2 py-1 text-xs">required</span>
+            </div>
+            <p class="text-sm">Current site environment, used by Boilerplate and plugins to determine whether you're developing or if the site is live. Use <code class="text-gray-900">dev</code> or <code class="text-gray-900">prod</code>.</p>
+
+            <div class="mt-4 font-mono text-gray-900">admin_mode</div>
+            <p class="text-sm">When set to <code class="text-gray-900">true</code>, will display an Admin UI for installing plugins, only works on localhost.</p>
+
+            <div class="mt-4 font-mono text-gray-900">
+                company
+            </div>
+            <p class="text-sm">The company/site name</p>
+
+            <div class="mt-4 font-mono text-gray-900">
+                force_url
+            </div>
+            <p class="text-sm">Forces the site <code class="text-gray-900">url</code> for all requests, similar to how WordPress does. Defaults to <code class="text-gray-900">false</code>. Only used if <code class="text-gray-900">environment === prod</code>.</p>  
+
+            <div class="mt-4 font-mono text-gray-900">
+                stylesheets
+            </div>
+            <p class="text-sm">Site-wide stylesheets, add in key value pairs <code class="text-gray-900">e.g. main: ~/css/style.css</code> the <code class="text-gray-900">~</code> character is used to represent the <code class="text-gray-900">assets_dir</code>, which is <code class="text-gray-900">/_templates/assets</code> by default. See <a class="text-blue-600" href="/docs/assets/">Assets</a> for more detail.</p>        
+        
+            <div class="mt-4 font-mono text-gray-900">
+                scripts
+            </div>
+            <p class="text-sm">Site-wide javascript, add in key value pairs <code class="text-gray-900">e.g. main: ~/js/bundle.js</code> the <code class="text-gray-900">~</code> character is used to represent the <code class="text-gray-900">assets_dir</code>, which is <code class="text-gray-900">/_templates/assets</code> by default. See <a class="text-blue-600" href="/docs/assets/">Assets</a> for more detail.</p>   
+        
+            <div class="mt-4 font-mono text-gray-900">
+                forms
+            </div>
+            <p class="text-sm">Configuration for your forms, see the Form plugin <code class="text-gray-900">docs</code> directory for full documentation</p>
+        </main>
+    </div>
+
+{% endblock %}
