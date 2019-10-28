@@ -5,6 +5,9 @@ use BP\CoreTheme;
 use Whoops\Run;
 use Whoops\Handler\PrettyPageHandler;
 
+// Define Version
+define('VERSION', '4.0.2');
+
 if ( !defined('ROOT_DIR') ) {
     throw new Exception('Boilerplate requires a ROOT_DIR constant set.');
 }
