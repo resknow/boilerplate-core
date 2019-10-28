@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BP\\": "_includes/core/classes/BP/"
+            "BP\\": "core/classes/BP/"
         }
     }
 }
