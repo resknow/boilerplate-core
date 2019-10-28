@@ -5,6 +5,9 @@ use BP\CoreTheme;
 use Whoops\Run;
 use Whoops\Handler\PrettyPageHandler;
 
+// Setup Package Dir
+define('BP_PACKAGE_DIR', __DIR__);
+
 // Define Version
 define('VERSION', '4.0.2');
 
@@ -18,7 +21,7 @@ $_config = Spyc::YAMLLoad(ROOT_DIR . $_config);
 
 // Detect Admin Mode
 if ( array_key_exists( 'admin_mode', $_config ) && $_config['admin_mode'] === true && $_config['environment'] === 'dev' ) {
-    require_once ROOT_DIR . '/_includes/core/ui/setup.php';
+    require_once BP_PACKAGE_DIR . '/core/ui/setup.php';
 }
 
 // Setup Whoops
@@ -32,13 +35,13 @@ if ( $_config['environment'] == 'dev' ) {
 $_whoops->register();
 
 // Load Path/URL Setup
-require_once ROOT_DIR . '/_includes/core/bootstrap/url.php';
+require_once BP_PACKAGE_DIR . '/core/bootstrap/url.php';
 
 // Create Theme Object
 $_theme = new CoreTheme('_templates');
 
 // Include functions, classes & plugins
-require_once ROOT_DIR . '/_includes/core/includes.php';
+require_once BP_PACKAGE_DIR . '/core/includes.php';
 
 // Action: template.init
 do_action( 'template.init', $_theme );

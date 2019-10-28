@@ -14,7 +14,7 @@ use BP\Theme;
 add_filter( 'template.render', function($loaded) use($_theme) {
 
     if ( $loaded == '' || $loaded == '404.php' && !is_readable( $_theme->get_dir() . '/404' . $_theme->get_ext() ) ) {
-        require_once ROOT_DIR . '/_includes/core/ui/404.php';
+        require_once BP_PACKAGE_DIR . '/core/ui/404.php';
         exit;
     }
 
@@ -39,7 +39,7 @@ add_action( 'init', function() {
     if ( in_array(false, $conditions) ) return;
 
     // Setup theme
-    $theme = new Theme('_includes/core/docs');
+    $theme = new Theme(BP_PACKAGE_DIR . '/core/docs');
     $theme->set_ext('.twig');
     $theme->register_render_function('twig');
 
