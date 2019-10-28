@@ -3,7 +3,6 @@
     "description": "Boilerplate Core - The core package for Boilerplate",
     "license": "BlueOak-1.0.0",
     "homepage": "https://github.com/resknow/boilerplate-core",
-    "type": "project",
     "support": {
         "issues": "https://github.com/resknow/boilerplate-core/issues"
     },
