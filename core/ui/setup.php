@@ -1,15 +1,16 @@
+<?php $pkgDir = str_replace( ROOT_DIR, '', BP_PACKAGE_DIR ); ?>
 <!doctype html>
 <html>
 <head>
 
     <title>Get Started with Boilerplate</title>
-    <link rel="stylesheet" href="/_includes/core/ui/css/boilerplate.css">
+    <link rel="stylesheet" href="<?= $pkgDir; ?>/core/ui/css/boilerplate.css">
 
 </head>
 <body>
 
     <header class="header">
-        <img src="/_includes/core/ui/images/logo.png" alt="Boilerplate Logo">
+        <img src="<?= $pkgDir; ?>/core/ui/images/logo.png" alt="Boilerplate Logo">
     </header>
 
     <?php if ( !file_exists( ROOT_DIR . '/_includes/vendor/autoload.php' ) ): ?>
@@ -33,8 +34,11 @@
         <p>You've got <code>admin_mode</code> set to <code>true</code>. Change it to <code>false</code> in your config file if you're done here.</p>
     </div>
 
-<script src="/_includes/core/ui/js/reef.js"></script>
-<script src="/_includes/core/ui/js/plugin-list.js"></script>
+<script>
+window.pkgDir = "<?= $pkgDir; ?>";
+</script>
+<script src="<?= $pkgDir; ?>/core/ui/js/reef.js"></script>
+<script src="<?= $pkgDir; ?>/core/ui/js/plugin-list.js"></script>
 </body>
 </html>
 <?php exit; // Stop anymore output ?>

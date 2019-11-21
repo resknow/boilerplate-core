@@ -58,7 +58,7 @@ const loadPlugins = (app) => {
 }
 
 const installedPlugins = (app) => {
-    fetch('/_includes/core/ui/get-installed-plugins.php').then((res) => {
+    fetch(`${window.pkgDir}/core/ui/get-installed-plugins.php`).then((res) => {
         return res.json();
     }).then((res) => {
         app.setData({
@@ -68,7 +68,7 @@ const installedPlugins = (app) => {
 }
 
 const installPlugin = (app, url, name) => {
-    fetch('/_includes/core/ui/install-plugin.php?url=' + url).then((res) => {
+    fetch(`${window.pkgDir}/core/ui/install-plugin.php?url=${url}`).then((res) => {
         return res.json();
     }).then((res) => {
 

@@ -7,7 +7,7 @@ header('Content-type: application/json');
 $url = urldecode($_GET['url']);
 
 // Setup directories
-$pluginDir = __DIR__ . '/../../../_plugins';
+$pluginDir = __DIR__ . '/../../../../../../_plugins';
 
 // Make sure it's writeable
 if ( !is_writeable($pluginDir) ) {
