@@ -157,9 +157,8 @@ h4 {
     color: #7c7a82;
 }
 
-.btn--installed {
-    cursor: not-allowed;
-    opacity: .6;
+.btn--delete {
+    background-color: #DD2B2B;
 }
 
 /* Spinner */

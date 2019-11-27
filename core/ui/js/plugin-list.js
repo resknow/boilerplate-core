@@ -14,7 +14,7 @@ const pluginList = new Reef('#plugin-list', {
 
                 // Is this plugin installed?
                 if ( props.installedPlugins.includes(plugin.slug) ) {
-                    status = 'installed';
+                    status = 'delete';
                 }
 
                 return `<article class="trace-item trace-item--setup">
@@ -24,7 +24,7 @@ const pluginList = new Reef('#plugin-list', {
                             <p>${plugin.description}</p>
                         </div>
                         <div class="plugin__actions">
-                            <button class="btn btn--${status}" data-name="${plugin.slug}" data-plugin="${plugin.download_url}">${status}</button>
+                            <button class="btn btn--${status}" data-status="${status}" data-name="${plugin.slug}" data-plugin="${plugin.download_url}">${status}</button>
                         </div>
                     </div>
                 </article>`;
@@ -94,6 +94,15 @@ const installPlugin = (app, url, name) => {
     });
 }
 
+const deletePlugin = (app, name) => {
+    fetch(`${window.pkgDir}/core/ui/delete-plugin.php?name=${name}`).then((res) => {
+        return res.json();
+    }).then((res) => {
+        // Update the installed plugins list
+        installedPlugins(app);
+    });
+}
+
 // Handle Installation
 document.addEventListener('click', (event) => {
 
@@ -104,6 +113,13 @@ document.addEventListener('click', (event) => {
     // Get Plugin Name
     let name = event.target.getAttribute('data-name');
     if ( !name ) return;
+
+    // Deletion
+    let status = event.target.getAttribute('data-status');
+    if ( status === 'delete' ) {
+        deletePlugin(pluginList, name);
+        return;
+    }
 
     // Install the plugin
     installPlugin(pluginList, url, name);
