@@ -17,6 +17,9 @@ const pluginList = new Reef('#plugin-list', {
                     status = 'delete';
                 }
 
+                let updateBtn = `<button class="btn btn--update" data-update data-name="${plugin.slug}" data-plugin="${plugin.download_url}">Update</button>`
+                if ( status !== 'delete' ) updateBtn = '';
+
                 return `<article class="trace-item trace-item--setup">
                     <div class="plugin">
                         <div class="plugin__info">
@@ -24,6 +27,7 @@ const pluginList = new Reef('#plugin-list', {
                             <p>${plugin.description}</p>
                         </div>
                         <div class="plugin__actions">
+                            ${updateBtn}
                             <button class="btn btn--${status}" data-status="${status}" data-name="${plugin.slug}" data-plugin="${plugin.download_url}">${status}</button>
                         </div>
                     </div>
@@ -95,12 +99,17 @@ const installPlugin = (app, url, name) => {
 }
 
 const deletePlugin = (app, name) => {
-    fetch(`${window.pkgDir}/core/ui/delete-plugin.php?name=${name}`).then((res) => {
+    return fetch(`${window.pkgDir}/core/ui/delete-plugin.php?name=${name}`).then((res) => {
         return res.json();
     }).then((res) => {
         // Update the installed plugins list
         installedPlugins(app);
     });
+}
+
+const updatePlugin = async (app, url, name) => {
+    await deletePlugin(app, name);
+    installPlugin(app, url, name);
 }
 
 // Handle Installation
@@ -113,6 +122,12 @@ document.addEventListener('click', (event) => {
     // Get Plugin Name
     let name = event.target.getAttribute('data-name');
     if ( !name ) return;
+
+    // Update
+    let update = event.target.getAttribute('data-update');
+    if ( update ) {
+        updatePlugin(pluginList, url, name);
+    }
 
     // Deletion
     let status = event.target.getAttribute('data-status');

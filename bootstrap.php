@@ -9,7 +9,7 @@ use Whoops\Handler\PrettyPageHandler;
 define('BP_PACKAGE_DIR', __DIR__);
 
 // Define Version
-define('VERSION', '4.0.5');
+define('VERSION', '4.1.0');
 
 if ( !defined('ROOT_DIR') ) {
     throw new Exception('Boilerplate requires a ROOT_DIR constant set.');

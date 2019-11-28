@@ -144,7 +144,7 @@ h4 {
 
 .plugin {
     display: grid;
-    grid-template-columns: 1fr 160px;
+    grid-template-columns: 1fr auto;
     grid-gap: 24px;
     align-items: center;
 }
@@ -159,6 +159,12 @@ h4 {
 
 .btn--delete {
     background-color: #DD2B2B;
+}
+
+.btn--update {
+    background-color: transparent;
+    border: .1rem solid #e2e2e9;
+    color: #7c7a82;
 }
 
 /* Spinner */
