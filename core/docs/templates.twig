@@ -1,0 +1,67 @@
+{#---
+title: Templates | Boilerplate Docs
+---#}
+{% extends 'layouts/default.twig' %}
+
+{% block body %}
+
+    <div>
+        {% include 'partials/nav.twig' %}
+
+        <main class="w-4/5 px-40 py-20 text-gray-700" style="margin-left: 20%">
+            <h1 class="text-2xl font-bold text-gray-900">Templates</h1>
+            <p class="mt-4">Templating is handled by the Twig engine. Many of your questions can be answered in the <a class="text-blue-700" href="https://twig.symfony.com/doc/2.x/templates.html">Twig documentation</a> itself, however there are some things to note with how Boilerplate implements it.</p>
+    
+            <h3 class="mt-8 text-xl font-bold text-gray-900">Template Hierachy</h3>
+            <p class="mt-4">Templates in found in the <code class="text-gray-900">_templates</code> directory are mapped to URLs on your site. Below is a breakdown of how Boilerplate determines which template to display for a URL.</p>
+        
+            <p class="mt-6 font-bold">Filename matching</p>
+            
+            <table class="mt-4 w-full">
+                <thead>
+                    <tr class="text-left">
+                        <th>URI</th>
+                        <th>Path</th>
+                        <th>Valid Template</th>
+                    </tr>
+                </thead>
+                <tbody class="font-mono">
+                    <tr>
+                        <td>/</td>
+                        <td>index</td>
+                        <td>index.twig</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-4">/about-us/</td>
+                        <td class="pt-4">about-us</td>
+                        <td class="pt-4">
+                            about-us.twig<br>
+                            about-us/index.twig    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pt-4">/about-us/team/</td>
+                        <td class="pt-4">about-us/team</td>
+                        <td class="pt-4">
+                            about-us/team.twig<br>
+                            about-us/team/index.twig<br>
+                            about-us-team.twig<br>
+                            about-us.twig
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="bg-gray-200 font-sans mt-4 p-4 rounded">
+                <p><strong class="text-red-500">Note:</strong> For sub paths (like the example above), Boilerplate will bubble up until it finds a valid template.</p>
+            </div>
+
+
+            <h3 class="mt-20 text-xl font-bold text-gray-900">Frontmatter</h3>
+            <p class="mt-4">Frontmatter is a small block of YAML at the top of a template file, which contains information about the current page. Here you can set the page title and other meta data as well as add page specific stylesheets and scripts.</p>
+            <img class="mt-4 rounded" src="{{ site.docs.assets }}/images/frontmatter.png">
+
+        </main>
+    </div>
+
+{% endblock %}

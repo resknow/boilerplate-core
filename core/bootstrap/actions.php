@@ -53,6 +53,7 @@ add_action( 'init', function() {
     // Add some useful variables
     set('site.version', VERSION);
     set('site.root_dir', ROOT_DIR);
+    set('site.docs.assets', str_replace(ROOT_DIR, '', BP_PACKAGE_DIR . '/core/docs/assets'));
 
     exit($theme->render($template, get()));
 
