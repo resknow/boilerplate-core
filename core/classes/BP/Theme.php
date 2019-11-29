@@ -293,7 +293,7 @@ class Theme {
      *
      * @param string $dir Theme directory
      */
-    public function set_dir(string $dir) {
+    public function set_dir($dir) {
         $this->dir = $dir;
     }
 
@@ -302,7 +302,7 @@ class Theme {
      *
      * @param string $ext Theme file extension
      */
-    public function set_ext(string $ext) {
+    public function set_ext($ext) {
         $this->ext = $ext;
     }
 
