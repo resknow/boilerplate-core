@@ -54,4 +54,7 @@ do_action( 'template.init', $_theme );
 router()->run();
 
 // Render the Page
-echo $_theme->render( apply_filters( 'template.render', $_theme->load($_path) ), get() );
+$_render = $_config['render'] ?? true;
+if ( $_render ) {
+    echo $_theme->render( apply_filters( 'template.render', $_theme->load($_path) ), get() );
+}
