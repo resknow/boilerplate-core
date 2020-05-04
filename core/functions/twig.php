@@ -45,3 +45,22 @@ add_filter( 'twig.front_matter', function($front_matter) {
     return $front_matter;
 
 } );
+
+// Enable Twig Caching in Prod
+add_filter( 'twig.environment', function($config) {
+
+    // If we can, let's enable caching for Twig
+    if ( get('site.environment') === 'prod' ) {
+        $dir = ROOT_DIR . '/_templates/cache';
+        $dir_exists = is_dir($dir);
+
+        // Attempt to create a cache directory if
+        // it doesn't exist already
+        if ( !$dir_exists ) @mkdir($dir, 775, true);
+
+        $dir_is_writeable = is_writeable($dir);
+        $config['cache'] = $dir_is_writeable ? $dir : false;
+    }
+
+    return $config;
+} );

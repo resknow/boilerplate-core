@@ -9,7 +9,7 @@ use Whoops\Handler\PrettyPageHandler;
 define('BP_PACKAGE_DIR', __DIR__);
 
 // Define Version
-define('VERSION', '4.1.2');
+define('VERSION', '4.2.0');
 
 if ( !defined('ROOT_DIR') ) {
     throw new Exception('Boilerplate requires a ROOT_DIR constant set.');
@@ -54,7 +54,7 @@ do_action( 'template.init', $_theme );
 router()->run();
 
 // Render the Page
-$_render = $_config['render'] ?? true;
+$_render = apply_filters( 'render', $_config['render'] ?? true );
 if ( $_render ) {
     echo $_theme->render( apply_filters( 'template.render', $_theme->load($_path) ), get() );
 }
