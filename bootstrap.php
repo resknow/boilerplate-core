@@ -19,6 +19,10 @@ if ( !defined('ROOT_DIR') ) {
 $_config = ( is_readable(ROOT_DIR . '/../.config.yml') ? '/../.config.yml' : '/.config.yml' );
 $_config = Spyc::YAMLLoad(ROOT_DIR . $_config);
 
+// Run some environment checks
+require_once BP_PACKAGE_DIR . '/core/environment-check.php';
+bp_environment_check();
+
 // Detect Admin Mode
 if ( array_key_exists( 'admin_mode', $_config ) && $_config['admin_mode'] === true && $_config['environment'] === 'dev' ) {
     require_once BP_PACKAGE_DIR . '/core/ui/setup.php';
