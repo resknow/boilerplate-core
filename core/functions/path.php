@@ -69,5 +69,5 @@ function path_contains( $string ) {
  */
 function is_index( $check = null ) {
     global $_index;
-    return $check == $_index[0];
+    return $check === $_index[0];
 }
