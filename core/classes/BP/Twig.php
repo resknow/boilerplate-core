@@ -79,9 +79,19 @@ class Twig {
             'use_library_script'
         ];
 
+        /**
+         * @filter twig.functions
+         * 
+         * Add a key/value pair to the array and return it to add
+         * named functions.
+         * 
+         * e.g. my_func => some_function
+         * would be called via my_func in a Twig template
+         */
         $functions = apply_filters( 'twig.functions', $functions );
     
-        foreach ( $functions as $function ) {
+        foreach ( $functions as $key => $function ) {
+            $name = ( is_numeric($name) ? $function : $key );
             $this->instance->addFunction( new TwigFunction($function, $function) );
         }
 
