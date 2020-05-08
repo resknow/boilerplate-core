@@ -120,6 +120,17 @@ class Filters {
      */
     public function apply_filter( $hook, $callback, $input ) {
 
+        /**
+         * Helper to allow filters to automatically
+         * return a boolean value instead of having
+         * to write a function to return the value
+         * 
+         * e.g. add_filter( 'render', false );
+         */
+        if ( is_bool($callback) ) {
+            return $callback;
+        }
+
         // Check Filter Function Exists
         if ( !is_callable($callback) ) {
             throw new Exception('Invalid callback.');
