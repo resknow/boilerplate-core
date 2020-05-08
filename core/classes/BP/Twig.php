@@ -78,6 +78,8 @@ class Twig {
             'use_library_stylesheet',
             'use_library_script'
         ];
+
+        $functions = apply_filters( 'twig.functions', $functions );
     
         foreach ( $functions as $function ) {
             $this->instance->addFunction( new TwigFunction($function, $function) );
