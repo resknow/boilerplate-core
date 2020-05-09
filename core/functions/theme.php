@@ -1,5 +1,7 @@
 <?php
 
+use BP\Theme;
+
 /**
  * Head
  *
@@ -88,4 +90,34 @@ function assets_dir( $suffix = false ) {
     $location = $_theme->get_dir();
     $path = ( $suffix ? sprintf('/%s/assets/%s', $location, $suffix) : sprintf('/%s/assets', $location) );
     return apply_filters( 'assets_dir', $path );
+}
+
+/**
+ * Render
+ * 
+ * Render a Twig template with some context
+ * 
+ * @param string $template Template path relative to /_templates
+ * @param array $context Template context
+ * @return string Rendered twig template
+ */
+function render( $template, $context = [] ) {
+    $dir = ROOT_DIR . '/_templates';
+    $theme = new Theme($dir);
+    $theme->set_ext('.twig');
+    $theme->register_render_function( 'twig' );
+    return $theme->render($template . '.twig', $context);
+}
+
+/**
+ * Output
+ * 
+ * Wraps the render function but echo's the
+ * result
+ * 
+ * @param string $template Template path relative to /_templates
+ * @param array $context Template context
+ */
+function output( $template, $context = [] ) {
+    echo render($template, $context);
 }
