@@ -91,7 +91,7 @@ class Twig {
         $functions = apply_filters( 'twig.functions', $functions );
     
         foreach ( $functions as $key => $function ) {
-            $name = ( is_numeric($name) ? $function : $key );
+            $name = ( is_numeric($key) ? $function : $key );
             $this->instance->addFunction( new TwigFunction($function, $function) );
         }
 
