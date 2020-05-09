@@ -92,7 +92,7 @@ class Twig {
     
         foreach ( $functions as $key => $function ) {
             $name = ( is_numeric($key) ? $function : $key );
-            $this->instance->addFunction( new TwigFunction($function, $function) );
+            $this->instance->addFunction( new TwigFunction($name, $function) );
         }
 
     }
