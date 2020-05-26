@@ -1,21 +1,21 @@
 {
-    "name": "resknow/boilerplate-core",
-    "description": "Boilerplate Core - The core package for Boilerplate",
-    "license": "BlueOak-1.0.0",
-    "homepage": "https://github.com/resknow/boilerplate-core",
-    "support": {
-        "issues": "https://github.com/resknow/boilerplate-core/issues"
-    },
-    "require": {
-        "php": "^7.1",
-        "twig/twig": "2.11",
-        "filp/whoops": "2.5",
-        "bramus/router": "1.4.2",
-        "mustangostang/spyc": "0.6.3"
-    },
-    "autoload": {
-        "psr-4": {
-            "BP\\": "core/classes/BP/"
-        }
-    }
+	"name": "resknow/boilerplate-core",
+	"description": "Boilerplate Core - The core package for Boilerplate",
+	"license": "BlueOak-1.0.0",
+	"homepage": "https://github.com/resknow/boilerplate-core",
+	"support": {
+		"issues": "https://github.com/resknow/boilerplate-core/issues"
+	},
+	"require": {
+		"php": "^7.2",
+		"twig/twig": "2.11",
+		"filp/whoops": "2.5",
+		"bramus/router": "1.4.2",
+		"mustangostang/spyc": "0.6.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"BP\\": "core/classes/BP/"
+		}
+	}
 }
