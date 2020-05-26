@@ -15,14 +15,14 @@ $_variables = new Variables($_config);
  * @param string $name   | name of the variable to add
  * @param mixed $value   | value to add
  */
-function set( $name, $value = false ) {
+function set($name, $value = false)
+{
 
     // Get Variables Object
     global $_variables;
 
     // Add Variable
-    $_variables->set( $name, $value );
-
+    $_variables->set($name, $value);
 }
 
 /**
@@ -32,19 +32,19 @@ function set( $name, $value = false ) {
  *
  * $name: (string) name of the variable to get
  */
-function get( $name = null, $default = null ) {
+function get($name = null, $default = null)
+{
 
     // Get Variables Object
     global $_variables;
 
     // Get Variable
-    if ( !is_null($name) ) {
-        return $_variables->get( $name, $default );
+    if (!is_null($name)) {
+        return $_variables->get($name, $default);
     }
 
     // Get All Variables
     return $_variables->get();
-
 }
 
 // Page variables

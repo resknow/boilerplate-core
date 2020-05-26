@@ -6,7 +6,8 @@
  *
  * @since 1.0.0
  */
-function is_form_data() {
+function is_form_data()
+{
     return $_POST || $_FILES;
 }
 
@@ -16,6 +17,7 @@ function is_form_data() {
  *
  * @since 1.0.0
  */
-function form_data() {
+function form_data()
+{
     return array_merge($_POST, $_FILES);
 }

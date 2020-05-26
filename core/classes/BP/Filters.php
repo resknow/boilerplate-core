@@ -4,7 +4,8 @@ namespace BP;
 
 use Exception;
 
-class Filters {
+class Filters
+{
 
     /**
      * Instance
@@ -30,18 +31,23 @@ class Filters {
     /**
      * Construct
      */
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     /**
      * Clone
      */
-    private function __clone() {}
+    private function __clone()
+    {
+    }
 
     /**
      * Add Hook
      */
-    public function add_hook( $name ) {
-        if ( !$this->hook_exists($name) ) {
+    public function add_hook($name)
+    {
+        if (!$this->hook_exists($name)) {
             $this->hooks[] = $name;
         }
     }
@@ -49,22 +55,24 @@ class Filters {
     /**
      * Hook Exists
      */
-    public function hook_exists( $name ) {
-        return in_array( $name, $this->hooks );
+    public function hook_exists($name)
+    {
+        return in_array($name, $this->hooks);
     }
 
     /**
      * Add Filter
      */
-    public function add_filter( $hook, $callback, $priority = 10 ) {
+    public function add_filter($hook, $callback, $priority = 10)
+    {
 
         // Check Hook Exists
-        if ( !$this->hook_exists( $hook ) ) {
-            $this->add_hook( $hook );
+        if (!$this->hook_exists($hook)) {
+            $this->add_hook($hook);
         }
 
         // Check $priority is a integer
-        if ( !is_int( $priority ) ) {
+        if (!is_int($priority)) {
             throw new Exception('<code>$priority</code> must be a valid integer.');
         }
 
@@ -75,23 +83,24 @@ class Filters {
             'priority'  => $priority,
             'callback'  => $callback
         ];
-
     }
 
     /**
      * Filter Exists
      */
-    public function filter_exists( $hook, $name ) {
-        return isset( $this->filters[$hook][$name] );
+    public function filter_exists($hook, $name)
+    {
+        return isset($this->filters[$hook][$name]);
     }
 
     /**
      * Apply Filters
      */
-    public function apply_filters( $hook, $input = null ) {
+    public function apply_filters($hook, $input = null)
+    {
 
         // Check for active filters
-        if ( empty($this->filters[$hook]) ) {
+        if (empty($this->filters[$hook])) {
             return $input;
         }
 
@@ -102,7 +111,7 @@ class Filters {
         $filters = $this->sort_filters($filters);
 
         // Apply Each Filter
-        foreach ( $filters as $filter ) {
+        foreach ($filters as $filter) {
             $input = $this->apply_filter(
                 $hook,
                 $filter['callback'],
@@ -112,48 +121,48 @@ class Filters {
 
         // Return Filtered Result
         return $input;
-
     }
 
     /**
      * Apply Filter
      */
-    public function apply_filter( $hook, $callback, $input ) {
+    public function apply_filter($hook, $callback, $input)
+    {
 
         /**
          * Helper to allow filters to automatically
          * return a boolean value instead of having
          * to write a function to return the value
-         * 
+         *
          * e.g. add_filter( 'render', false );
          */
-        if ( is_bool($callback) ) {
+        if (is_bool($callback)) {
             return $callback;
         }
 
         // Check Filter Function Exists
-        if ( !is_callable($callback) ) {
+        if (!is_callable($callback)) {
             throw new Exception('Invalid callback.');
         }
 
         ############################
 
-        $input = call_user_func( $callback, $input );
+        $input = call_user_func($callback, $input);
         return $input;
-
     }
 
     /**
      * Sort Filters
      */
-    protected function sort_filters( array $filters ) {
-        usort( $filters, function( $a, $b ) {
+    protected function sort_filters(array $filters)
+    {
+        usort($filters, function ($a, $b) {
             if ($a['priority'] === $b['priority']) {
                 return 0;
             }
 
             return ($a['priority'] < $b['priority']) ? -1 : 1;
-        } );
+        });
 
         return $filters;
     }
@@ -161,14 +170,14 @@ class Filters {
     /**
      * Get Instance
      */
-    public static function get_instance() {
+    public static function get_instance()
+    {
 
-        if ( self::$instance === null ) {
+        if (self::$instance === null) {
             self::$instance = new Filters();
         }
 
         return self::$instance;
-
     }
 
     /**
@@ -176,9 +185,10 @@ class Filters {
      *
      * @since 1.5.4
      */
-    public static function add( $hook, $name, $priority = 10 ) {
+    public static function add($hook, $name, $priority = 10)
+    {
         $i = self::get_instance();
-        $i->add_filter( $hook, $name, $priority );
+        $i->add_filter($hook, $name, $priority);
     }
 
     /**
@@ -186,9 +196,9 @@ class Filters {
      *
      * @since 1.5.4
      */
-    public static function apply( $hook, $name ) {
+    public static function apply($hook, $name)
+    {
         $i = self::get_instance();
-        return $i->apply_filters( $hook, $name );
+        return $i->apply_filters($hook, $name);
     }
-
 }

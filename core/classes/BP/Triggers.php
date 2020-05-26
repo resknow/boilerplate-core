@@ -11,7 +11,8 @@ namespace BP;
 
 use Exception;
 
-class Triggers {
+class Triggers
+{
 
     /**
      * Instance
@@ -31,7 +32,8 @@ class Triggers {
     /**
      * Do Trigger
      */
-    public function do_trigger( $trigger ) {
+    public function do_trigger($trigger)
+    {
 
         // Get Args
         $args = func_get_args();
@@ -43,51 +45,51 @@ class Triggers {
         $args = array_values($args);
 
         // Check this trigger has actions
-        if ( array_key_exists($trigger, $this->actions) ) {
+        if (array_key_exists($trigger, $this->actions)) {
 
             // Loop through each action
-            foreach ( $this->actions[$trigger] as $action ) {
+            foreach ($this->actions[$trigger] as $action) {
 
                 // Do the action
-                call_user_func_array( array( $this, 'do_action' ), array_merge(array($action['action']), $args) );
-
+                call_user_func_array(array($this, 'do_action'), array_merge(array($action['action']), $args));
             }
-
         }
-
     }
 
     /**
      * Get Triggers
      */
-    public function get_triggers() {
+    public function get_triggers()
+    {
         return $this->triggers;
     }
 
     /**
      * Trigger Exists
      */
-    public function trigger_exists( $trigger ) {
+    public function trigger_exists($trigger)
+    {
         return array_key_exists($trigger, $this->triggers);
     }
 
     /**
      * Add Action
      */
-    public function add_action( $trigger, $action ) {
+    public function add_action($trigger, $action)
+    {
 
         // Register action
         $this->actions[$trigger][] = array(
             'trigger'   => $trigger,
             'action'    => $action
         );
-
     }
 
     /**
      * Do Action
      */
-    public function do_action( $action ) {
+    public function do_action($action)
+    {
 
         // Get Args
         $args = func_get_args();
@@ -100,7 +102,6 @@ class Triggers {
 
         // Execute callback
         call_user_func_array($action, $args);
-
     }
 
     /**
@@ -108,8 +109,9 @@ class Triggers {
      *
      * @param $action (string) Action to remove
      */
-    public function remove_action( $trigger, $action ) {
-        if ( array_key_exists( $action, $this->actions[$trigger] ) ) {
+    public function remove_action($trigger, $action)
+    {
+        if (array_key_exists($action, $this->actions[$trigger])) {
             unset($this->actions[$trigger][$action]);
         }
     }
@@ -117,7 +119,8 @@ class Triggers {
     /**
      * Get Actions
      */
-    public function get_actions() {
+    public function get_actions()
+    {
         return $this->actions;
     }
 
@@ -126,14 +129,14 @@ class Triggers {
      *
      * @since 1.5.4
      */
-    public static function get_instance() {
+    public static function get_instance()
+    {
 
-        if ( self::$instance === null ) {
+        if (self::$instance === null) {
             self::$instance = new Triggers();
         }
 
         return self::$instance;
-
     }
 
     /**
@@ -141,9 +144,10 @@ class Triggers {
      *
      * @since 1.5.4
      */
-    public static function fire( $trigger ) {
+    public static function fire($trigger)
+    {
         $i = self::get_instance();
-        $i->do_trigger( $trigger );
+        $i->do_trigger($trigger);
     }
 
     /**
@@ -151,9 +155,10 @@ class Triggers {
      *
      * @since 1.5.4
      */
-    public static function register( $trigger, $action ) {
+    public static function register($trigger, $action)
+    {
         $i = self::get_instance();
-        $i->add_action( $trigger, $action );
+        $i->add_action($trigger, $action);
     }
 
     /**
@@ -161,9 +166,9 @@ class Triggers {
      *
      * @since 1.5.4
      */
-    public static function unregister( $trigger, $action ) {
+    public static function unregister($trigger, $action)
+    {
         $i = self::get_instance();
-        $i->remove_action( $trigger, $action );
+        $i->remove_action($trigger, $action);
     }
-
 }

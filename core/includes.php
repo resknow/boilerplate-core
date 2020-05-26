@@ -19,19 +19,18 @@ require_once BP_PACKAGE_DIR . '/core/functions/twig.php';
 $_plugin_files = glob(ROOT_DIR . '/_plugins/**/plugin.php');
 
 // Include plugins
-if ( is_array($_plugin_files) ) {
+if (is_array($_plugin_files)) {
 
-    foreach ( $_plugin_files as $plugin ) {
+    foreach ($_plugin_files as $plugin) {
         require_once $plugin;
     }
-
 }
 
 // Clean up
 unset($_plugin_files);
 
 // Action: plugins.loaded
-do_action( 'plugins.loaded' );
+do_action('plugins.loaded');
 
 /**
  * Get theme functions.php
@@ -40,19 +39,18 @@ do_action( 'plugins.loaded' );
  * for applying filters as they need to be
  * declared before they get executed!
  */
- // Get available functions
+// Get available functions
 $_function_files = glob(ROOT_DIR . '/_functions/*.php');
 
- // Include plugins
-if ( is_array($_function_files) ) {
+// Include plugins
+if (is_array($_function_files)) {
 
-    foreach ( $_function_files as $function ) {
+    foreach ($_function_files as $function) {
         require_once $function;
     }
 
     // Action: template.functions.loaded
-    do_action( 'template.functions.loaded' );
-
+    do_action('template.functions.loaded');
 }
 
 // Clean up
@@ -67,13 +65,13 @@ require_once BP_PACKAGE_DIR . '/core/functions/theme.php';
 require_once BP_PACKAGE_DIR . '/core/variables.php';
 
 // Action: variables.loaded
-do_action( 'variables.loaded' );
+do_action('variables.loaded');
 
 // Load Assets
 require_once BP_PACKAGE_DIR . '/core/functions/assets.php';
 
 // Action: assets.loaded
-do_action( 'assets.loaded', $_assets );
+do_action('assets.loaded', $_assets);
 
 // Init
-do_action( 'init' );
+do_action('init');

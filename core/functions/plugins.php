@@ -9,7 +9,8 @@
  *
  * @param $root (bool) Prefix with ROOT_DIR, defaults to true
  */
-function plugin_dir( $root = true ) {
+function plugin_dir($root = true)
+{
     $dir = '/_plugins';
     return ($root === true ? ROOT_DIR . $dir : $dir);
 }
@@ -21,8 +22,9 @@ function plugin_dir( $root = true ) {
  *
  * $plugin: (string) name of the plugin to check
  */
-function plugin_exists( $plugin ) {
-    return is_dir(plugin_dir() .'/'. $plugin);
+function plugin_exists($plugin)
+{
+    return is_dir(plugin_dir() . '/' . $plugin);
 }
 
 /**
@@ -32,8 +34,9 @@ function plugin_exists( $plugin ) {
  *
  * $plugin: (string) name of the plugin to check
  */
-function plugin_is_active( $plugin ) {
-    return file_exists(plugin_dir() .'/'. $plugin .'/plugin.php');
+function plugin_is_active($plugin)
+{
+    return file_exists(plugin_dir() . '/' . $plugin . '/plugin.php');
 }
 
 /**
@@ -44,12 +47,13 @@ function plugin_is_active( $plugin ) {
  * @param $plugin (string) Plugin slug/name
  * @param $version (string|float) Minimum version number required
  */
-function plugin_requires_version( $plugin, $version ) {
-    if ( version_compare(VERSION, $version, '<') ) {
+function plugin_requires_version($plugin, $version)
+{
+    if (version_compare(VERSION, $version, '<')) {
         throw new Exception(sprintf(
             '%s requires at least Boilerplate version %s.',
             $plugin,
-            (string)$version
+            (string) $version
         ));
     }
 }

@@ -5,9 +5,10 @@
  *
  * @since 1.6.0
  */
-function do_action() {
+function do_action()
+{
     $triggers = BP\Triggers::get_instance();
-    call_user_func_array( array( $triggers, 'do_trigger' ), func_get_args() );
+    call_user_func_array(array($triggers, 'do_trigger'), func_get_args());
 }
 
 /**
@@ -16,7 +17,8 @@ function do_action() {
  * @since 1.0.2
  * @updated 1.5.4
  */
-function add_action( $trigger, $action ) {
+function add_action($trigger, $action)
+{
     $triggers = BP\Triggers::get_instance();
 
     $args = func_get_args();
@@ -35,7 +37,8 @@ function add_action( $trigger, $action ) {
  * @since 1.5.3
  * @updated 1.5.4
  */
-function remove_action( $trigger, $action ) {
+function remove_action($trigger, $action)
+{
     $triggers = BP\Triggers::get_instance();
     return $triggers->remove_action($trigger, $action);
 }

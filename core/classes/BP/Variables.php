@@ -7,7 +7,8 @@
 
 namespace BP;
 
-class Variables {
+class Variables
+{
 
     /**
      * Site Config
@@ -31,7 +32,8 @@ class Variables {
      * Construct
      * Define core variables
      */
-    public function __construct(array $site_config) {
+    public function __construct(array $site_config)
+    {
         $this->site_config = $site_config;
 
         // Define Site Variables
@@ -44,10 +46,11 @@ class Variables {
      * @param string $key Variable name
      * @param mixed $default An optional default value if false
      */
-    public function get( $key = null, $default = null ) {
+    public function get($key = null, $default = null)
+    {
 
         // Return All Variables
-        if ( is_null($key) ) {
+        if (is_null($key)) {
             return $this->variables;
         }
 
@@ -65,35 +68,35 @@ class Variables {
             }
         }
 
-        return ( is_null($variable) ? $default : $variable );
-
+        return (is_null($variable) ? $default : $variable);
     }
 
     /**
      * Add Variable
      */
-    public function set( $variable, $value = false, $core = false ) {
+    public function set($variable, $value = false, $core = false)
+    {
 
-        if ( is_array($variable) ) {
-            foreach( $variable as $var => $val ) {
+        if (is_array($variable)) {
+            foreach ($variable as $var => $val) {
                 $this->set($var, $val, $core);
             }
-        } elseif ( $value !== false ) {
+        } elseif ($value !== false) {
 
-            if ( !in_array($variable, $this->core) ) {
+            if (!in_array($variable, $this->core)) {
 
                 $parsed = explode('.', $variable);
 
-                $var =& $this->variables;
+                $var = &$this->variables;
 
                 while (count($parsed) > 1) {
                     $next = array_shift($parsed);
 
-                    if ( !isset($var[$next]) || !is_array($var[$next])) {
+                    if (!isset($var[$next]) || !is_array($var[$next])) {
                         $var[$next] = array();
                     }
 
-                    $var =& $var[$next];
+                    $var = &$var[$next];
                 }
 
                 $var[array_shift($parsed)] = $value;
@@ -102,23 +105,22 @@ class Variables {
                     $this->core[] = $variable;
                 }
             }
-
         }
     }
 
     /**
      * Remove Variable
      */
-    public function remove( $variable ) {
-        if ( is_array($variable) ) {
-            foreach ( $variable as $var ) {
+    public function remove($variable)
+    {
+        if (is_array($variable)) {
+            foreach ($variable as $var) {
                 $this->remove($var);
             }
         } else {
-            if ( !in_array($variable, $this->core) && array_key_exists($variable, $this->variables) ) {
+            if (!in_array($variable, $this->core) && array_key_exists($variable, $this->variables)) {
                 unset($this->variables[$variable]);
             }
         }
     }
-
 }

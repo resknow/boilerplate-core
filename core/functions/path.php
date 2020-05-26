@@ -13,7 +13,8 @@
  *
  * $check: (string) path to check
  */
-function is_page( $check = null ) {
+function is_page($check = null)
+{
     global $_path;
     $page = (is_null($check) ? 'index' : $check);
     return $page === str_replace('/', '-', $_path);
@@ -26,7 +27,8 @@ function is_page( $check = null ) {
  *
  * @since 1.0.0
  */
-function is_home() {
+function is_home()
+{
     return is_page();
 }
 
@@ -37,7 +39,8 @@ function is_home() {
  *
  * $check: (string) path to check
  */
-function is_path( $check ) {
+function is_path($check)
+{
     global $_path;
     return $check === $_path;
 }
@@ -53,7 +56,8 @@ function is_path( $check ) {
  *
  * $string: (string) string to check for
  */
-function path_contains( $string ) {
+function path_contains($string)
+{
     global $_path;
     return preg_match('/' . preg_quote($string, '/') . '/', $_path);
 }
@@ -67,7 +71,8 @@ function path_contains( $string ) {
  *
  * $check: (string) index key to check
  */
-function is_index( $check = null ) {
+function is_index($check = null)
+{
     global $_index;
     return $check === $_index[0];
 }
