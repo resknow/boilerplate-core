@@ -101,26 +101,8 @@ class Twig
     protected function read_front_matter($file, $theme)
     {
 
-        // Get file
-        $template = sprintf('%s/%s', $theme->get_dir(), $file);
-
-        // Make sure we can read the template
-        if (!is_readable($template)) return;
-
-        // Open the file
-        $contents = @file_get_contents($template);
-
-        // Get the front matter
-        $contents = explode('---#}', $contents);
-
-        // Remove the top comment tag
-        $front_matter_string = ltrim($contents[0], '{#---');
-
-        // Parse it!
-        $front_matter = Spyc::YAMLLoadString($front_matter_string);
-
-        // Run a filter
-        $front_matter = apply_filters('twig.front_matter', $front_matter);
+        $file = sprintf('%s/%s', $theme->get_dir(), $file);
+        $front_matter = read_front_matter($file);
 
         // Done, merge it with the page array!
         $page = get('page');
