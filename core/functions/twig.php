@@ -3,7 +3,7 @@
 use BP\Twig;
 
 // Setup Twig
-function twig($context = [], $template, $theme, $echo = true)
+function twig($context = [], $template, $theme, $echo = false)
 {
     $twig = new Twig($context, $template, $theme);
 
