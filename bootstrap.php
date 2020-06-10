@@ -1,6 +1,5 @@
 <?php
 
-use BP\Controller;
 use BP\CoreTheme;
 use Whoops\Run;
 use Whoops\Handler\PrettyPageHandler;
@@ -9,7 +8,7 @@ use Whoops\Handler\PrettyPageHandler;
 define('BP_PACKAGE_DIR', __DIR__);
 
 // Define Version
-define('VERSION', '4.5.2');
+define('VERSION', '4.6.0');
 
 if (!defined('ROOT_DIR')) {
     throw new Exception('Boilerplate requires a ROOT_DIR constant set.');
@@ -56,5 +55,7 @@ router()->run();
 // Render the Page
 $_render = apply_filters('render', $_config['render'] ?? true);
 if ($_render) {
-    echo $_theme->render(apply_filters('template.render', $_theme->load($_path)), get());
+    $rendered_html = $_theme->render(apply_filters('template.render', $_theme->load($_path)), get());
+    !isset($_cache) ?? $_cache->cache($_path, $rendered_html);
+    echo $rendered_html;
 }

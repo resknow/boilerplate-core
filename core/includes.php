@@ -7,6 +7,10 @@ require_once BP_PACKAGE_DIR . '/core/functions/dev.php';
 require_once BP_PACKAGE_DIR . '/core/functions/router.php';
 require_once BP_PACKAGE_DIR . '/core/functions/filters.php';
 require_once BP_PACKAGE_DIR . '/core/functions/triggers.php';
+
+// Cache
+require_once BP_PACKAGE_DIR . '/core/functions/cache.php';
+
 require_once BP_PACKAGE_DIR . '/core/functions/plugins.php';
 
 // Run core actions/filters
